@@ -52,7 +52,6 @@ parameter_defaults:
           provisioning_subnet:
             cidr: 192.168.24.0/24
             dns_nameservers: []
-            gateway_ip: 192.168.24.254
             host_routes: []
             ip_version: 4
             name: provisioning_subnet

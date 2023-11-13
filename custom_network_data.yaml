@@ -26,4 +26,3 @@
       allocation_pools:
         - start: 192.168.24.130
           end: 192.168.24.149
-      gateway_ip: 192.168.24.254

@@ -1,13 +1,11 @@
 #!/bin/sh
 
 openstack overcloud deploy --stack overcloud \
-		--validation-errors-nonfatal \
 		--templates /usr/share/openstack-tripleo-heat-templates \
-		-n custom_network_data.yaml \
+		--networks-file custom_network_data.yaml \
 		--vip-file custom_vip_data.yaml \
 		--baremetal-deployment overcloud_baremetal_deploy.yaml \
-		-r roles_data.yaml \
-		--deployed-server \
+		--roles-file roles_data.yaml \
 		-e containers-prepare-parameter.yaml \
 		-e /usr/share/openstack-tripleo-heat-templates/environments/memcached-use-ips.yaml \
 		-e /usr/share/openstack-tripleo-heat-templates/environments/services/neutron-ml2-ansible.yaml \
@@ -16,5 +14,8 @@ openstack overcloud deploy --stack overcloud \
 		-e tls-endpoints-public-dns.yaml \
 		-e cloudname.yaml \
 		-e esi-custom.yaml \
-		-e keystone_extraconfig.yaml \
-		-e sso_vars.yaml
+		-e templates/template_file.yaml \
+		#-e sso_extraconfig.yaml \
+		#-e sso_vars.yaml \
+		--overcloud-ssh-user tripleo-admin \
+		--overcloud-ssh-key ~/.ssh/id_rsa

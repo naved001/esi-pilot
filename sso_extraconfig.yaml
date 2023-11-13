@@ -15,7 +15,7 @@ parameter_defaults:
       OIDC: ["moc", "openid"]
     horizon::help_url:
       https://osticket.massopen.cloud/open.php
-    horizon::keystone_url: https://esi.massopen.cloud:13000/v3
+    horizon::keystone_url: https://moc-esi.massopen.cloud:13000/v3
     keystone::config::keystone_config:
       auth/methods:
         value: password,token,openid,application_credential
@@ -25,26 +25,28 @@ parameter_defaults:
         value:
           - http://onboarding.massopen.cloud/auth/websso/
           - https://onboarding.massopen.cloud/auth/websso/
-          - https://esi.massopen.cloud/dashboard/auth/websso/
-          - http://esi.massopen.cloud/dashboard/auth/websso/
+          - https://moc-esi.massopen.cloud/dashboard/auth/websso/
+          - http://moc-esi.massopen.cloud/dashboard/auth/websso/
 
     keystone::wsgi::apache::vhost_custom_fragment: |
       LoadModule auth_openidc_module modules/mod_auth_openidc.so
+      # Not sure if we need to load the following module or not, still testing
+      LoadModule authn_core_module modules/mod_authn_core.so
       OIDCClaimPrefix "OIDC-"
       OIDCResponseType "id_token"
       OIDCScope "openid email profile"
       OIDCProviderMetadataURL "https://sso.massopen.cloud/auth/realms/moc/.well-known/openid-configuration"
-      OIDCClientID "esi"
+      OIDCClientID "moc-esi"
       OIDCClientSecret "xxx"
       OIDCCryptoPassphrase "xxx"
 
       OIDCCacheType memcache
-      OIDCMemCacheServers "192.168.24.9:11211 192.168.24.16:11211 192.168.24.23:11211"
+      OIDCMemCacheServers "192.168.24.21:11211 192.168.24.20:11211 192.168.24.19:11211"
 
       # The following directives are necessary to support websso from Horizon
       # (Per https://docs.openstack.org/keystone/pike/advanced-topics/federation/websso.html)
-      OIDCRedirectURI "https://esi.massopen.cloud:13000/v3/auth/OS-FEDERATION/identity_providers/moc/protocols/openid/websso"
-      OIDCRedirectURI "https://esi.massopen.cloud:13000/v3/auth/OS-FEDERATION/websso/openid"
+      OIDCRedirectURI "https://moc-esi.massopen.cloud:13000/v3/auth/OS-FEDERATION/identity_providers/moc/protocols/openid/websso"
+      OIDCRedirectURI "https://moc-esi.massopen.cloud:13000/v3/auth/OS-FEDERATION/websso/openid"
 
       <LocationMatch "/v3/auth/OS-FEDERATION/websso/openid">
           AuthType "openid-connect"
@@ -56,7 +58,7 @@ parameter_defaults:
           Require valid-user
       </LocationMatch>
 
-      OIDCOAuthClientID "esi"
+      OIDCOAuthClientID "moc-esi"
       OIDCOAuthClientSecret "xxx"
       OIDCOAuthIntrospectionEndpoint "https://sso.massopen.cloud/auth/realms/moc/protocol/openid-connect/token/introspect"
 

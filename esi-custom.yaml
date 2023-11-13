@@ -13,10 +13,11 @@ parameter_defaults:
   NeutronPhysicalBridge: br-ex
   NeutronFlatNetworks: datacentre
   NeutronMechanismDrivers: [openvswitch, baremetal]
-  NeutronNetworkVLANRanges: datacentre:351:499,datacentre:520:622,datacentre:624:630
+  NeutronNetworkVLANRanges: datacentre:381:499,datacentre:520:622,datacentre:624:630
   NeutronTypeDrivers: [local, geneve, vlan, flat, vxlan]
+  CloudDomain: massopen.cloud
 
-  PublicVirtualFixedIPs: [{'ip_address':'129.10.5.144'}]
+  PublicVirtualFixedIPs: [{'ip_address':'129.10.5.153'}]
 
   ServiceNetMap:
    IronicApiNetwork: oc_provisioning
@@ -54,9 +55,9 @@ parameter_defaults:
   IronicInspectorSubnets:
   - ip_range: 192.168.24.200,192.168.24.250
     gateway: 192.168.24.255
-
   ContainerImagePrepare:
-  - set:
+  - push_destination: 192.168.24.1:8787
+    set:
       ceph_image: daemon
       ceph_namespace: quay.io/ceph
       ceph_tag: v6.0.7-stable-6.0-pacific-centos-stream8
@@ -75,7 +76,7 @@ parameter_defaults:
     modify_append_tag: "-hotfix-wallaby-2023-02-28"
     modify_vars:
       tasks_from: modify_image.yml
-      modify_dir_path: /home/stack/esi-pilot/custom-dockerfiles/neutron-server
+      modify_dir_path: /home/stack/custom-dockerfiles/neutron-server
   - push_destination: 192.168.24.1:8787
     set:
       namespace: quay.io/tripleowallaby
@@ -85,7 +86,7 @@ parameter_defaults:
     modify_append_tag: "-hotfix-wallaby"
     modify_vars:
       tasks_from: modify_image.yml
-      modify_dir_path: /home/stack/esi-pilot/custom-dockerfiles/ironic-conductor
+      modify_dir_path: /home/stack/custom-dockerfiles/ironic-conductor
   - push_destination: 192.168.24.1:8787
     set:
       namespace: quay.io/tripleowallaby
@@ -95,7 +96,7 @@ parameter_defaults:
     modify_append_tag: "-hotfix-wallaby"
     modify_vars:
       tasks_from: modify_image.yml
-      modify_dir_path: /home/stack/esi-pilot/custom-dockerfiles/cinder-volume
+      modify_dir_path: /home/stack/custom-dockerfiles/cinder-volume
   - push_destination: 192.168.24.1:8787
     set:
       namespace: quay.io/tripleowallaby
@@ -105,7 +106,7 @@ parameter_defaults:
     modify_append_tag: "-hotfix-wallaby"
     modify_vars:
       tasks_from: modify_image.yml
-      modify_dir_path: /home/stack/esi-pilot/custom-dockerfiles/ironic-api
+      modify_dir_path: /home/stack/custom-dockerfiles/ironic-api
   EnableCache: False
   ExtraConfig:
     tripleo::haproxy::neutron::options:

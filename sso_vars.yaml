@@ -1,12 +1,12 @@
 # Parameters for single-signon.yaml and enable-federation-openidc.yaml
 parameter_defaults:
-  KeystoneTrustedDashboards: https://esi.massopen.cloud/
+  KeystoneTrustedDashboards: https://moc-esi.massopen.cloud/
   # The name associated with the IdP in Keystone.
   KeystoneOpenIdcIdpName: moc
   # Copy the ProviderMetadataUrl from moc openstack.
   KeystoneOpenIdcProviderMetadataUrl: https://sso.massopen.cloud/auth/realms/moc/.well-known/openid-configuration
   # We have requested our openidc client: esi
-  KeystoneOpenIdcClientId: esi
+  KeystoneOpenIdcClientId: moc-esi
   # Copy KeystoneIdentityProviders parameters from moc openstack
   KeystoneIdentityProviders:
     moc:

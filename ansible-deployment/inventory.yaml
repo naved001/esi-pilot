@@ -1,35 +1,35 @@
 overcloud_controllers:
   hosts:
     controller0:
-      ansible_host: 192.168.24.9
-      public_ip: 129.10.5.141
+      ansible_host: 192.168.24.18
+      public_ip: 129.10.5.150
       internal_ip: 172.17.1.4
       storage_ip: 10.21.3.4
       inspector_ip: 192.168.11.252
       switch_ip: 10.1.0.3
-      eth0: enp3s0f0np0
-      eth1: enp3s0f1np1
+      eth0: ens3f0np0
+      eth1: ens2f0np0
     controller1:
-      ansible_host: 192.168.24.16
-      public_ip: 129.10.5.142
+      ansible_host: 192.168.24.13
+      public_ip: 129.10.5.151
       internal_ip: 172.17.1.5
       storage_ip: 10.21.3.5
       inspector_ip: 192.168.11.253
       switch_ip: 10.1.0.4
-      eth0: enp65s0f0np0
-      eth1: enp65s0f1np1
+      eth0: ens3f0np0
+      eth1: ens2f0np0
     controller2:
-      ansible_host: 192.168.24.23
-      public_ip: 129.10.5.143
+      ansible_host: 192.168.24.9
+      public_ip: 129.10.5.152
       internal_ip: 172.17.1.6
       storage_ip: 10.21.3.6
       inspector_ip: 192.168.11.254
       switch_ip: 10.1.0.5
-      eth0: enp65s0f0np0
-      eth1: enp65s0f1np1
+      eth0: ens3f0np0
+      eth1: ens2f0np0
   vars:
-    ansible_user: heat-admin
-    external_endpoint: 129.10.5.144
-    master_ip: 192.168.24.9
+    ansible_user: tripleo-admin
+    external_endpoint: 129.10.5.153
+    master_ip: 192.168.24.18
     ansible_switch_host: 10.1.0.14
-    esi_leap_controller_ip: 192.168.24.16
+    esi_leap_controller_ip: 192.168.24.18
