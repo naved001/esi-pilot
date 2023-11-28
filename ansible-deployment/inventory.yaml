@@ -4,27 +4,27 @@ overcloud_controllers:
       ansible_host: 192.168.24.18
       public_ip: 129.10.5.150
       internal_ip: 172.17.1.4
-      storage_ip: 10.21.3.4
+      storage_ip: 10.21.3.7
       inspector_ip: 192.168.11.252
-      switch_ip: 10.1.0.3
+      switch_ip: 10.1.0.7
       eth0: ens3f0np0
       eth1: ens2f0np0
     controller1:
       ansible_host: 192.168.24.13
       public_ip: 129.10.5.151
       internal_ip: 172.17.1.5
-      storage_ip: 10.21.3.5
+      storage_ip: 10.21.3.8
       inspector_ip: 192.168.11.253
-      switch_ip: 10.1.0.4
+      switch_ip: 10.1.0.8
       eth0: ens3f0np0
       eth1: ens2f0np0
     controller2:
       ansible_host: 192.168.24.9
       public_ip: 129.10.5.152
       internal_ip: 172.17.1.6
-      storage_ip: 10.21.3.6
+      storage_ip: 10.21.3.9
       inspector_ip: 192.168.11.254
-      switch_ip: 10.1.0.5
+      switch_ip: 10.1.0.9
       eth0: ens3f0np0
       eth1: ens2f0np0
   vars:

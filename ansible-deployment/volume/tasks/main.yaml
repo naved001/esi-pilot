@@ -16,10 +16,10 @@
           rbd_iscsi_api_user=admin
           rbd_iscsi_api_password={{ rbd_iscsi_api_password }}
           rbd_iscsi_api_url=http://10.21.3.1:5000
-          rbd_iscsi_target_iqn=iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
+          rbd_iscsi_target_iqn=iqn.2023-11.cloud.massopen.iscsi-gw:iscsi-gw
           rbd_ceph_conf=/etc/ceph/ceph.conf
-          rbd_user=esi
-          rbd_pool=esi-volumes
+          rbd_user=new-esi
+          rbd_pool=new-esi-volumes
           rbd_flatten_volume_from_snapshot=False
           rbd_secret_uuid={{ rbd_secret_uuid }}
           report_discard_supported=True
@@ -38,8 +38,8 @@
          copy: src=multipath.conf dest=/etc mode=0644
        - name: copy ceph.conf to cinder volume container
          command: podman cp ceph.conf openstack-cinder-volume-podman-0:/etc/ceph
-       - name: copy ceph.client.esi.keyring to cinder volume container
-         command: podman cp ceph.client.esi.keyring openstack-cinder-volume-podman-0:/etc/ceph
+       - name: copy ceph.client.new-esi.keyring to cinder volume container
+         command: podman cp ceph.client.new-esi.keyring openstack-cinder-volume-podman-0:/etc/ceph
        - name: restart cinder volume container
          command: podman container restart openstack-cinder-volume-podman-0
        when: ansible_ssh_host == master_ip

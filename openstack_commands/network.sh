@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # provisioning network
-openstack network create --provider-network-type vlan --provider-segment 623 --provider-physical-network datacentre --share provisioning
+openstack network create --provider-network-type vlan --provider-segment 700 --provider-physical-network datacentre --share provisioning
 openstack subnet create \
       --network provisioning \
       --subnet-range 192.168.11.0/24  \
@@ -22,7 +22,7 @@ openstack subnet create \
           --subnet-range 10.21.0.0/22  \
           --ip-version 4 \
           --gateway 10.21.0.1 \
-          --allocation-pool start=10.21.0.140,end=10.21.0.159 \
+          --allocation-pool start=10.21.0.160,end=10.21.0.200 \
           --dns-nameserver 8.8.8.8 \
           --dhcp subnet-storage
 
@@ -33,7 +33,7 @@ openstack subnet create \
           --subnet-range 128.31.20.0/22  \
           --ip-version 4 \
           --gateway 128.31.20.1 \
-          --allocation-pool start=128.31.20.31,end=128.31.20.240 \
+          --allocation-pool start=128.31.21.0,end=128.31.21.240 \
           --dns-nameserver 8.8.8.8 \
           --dhcp subnet-external
 
