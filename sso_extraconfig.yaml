@@ -30,8 +30,9 @@ parameter_defaults:
 
     keystone::wsgi::apache::vhost_custom_fragment: |
       LoadModule auth_openidc_module modules/mod_auth_openidc.so
-      # Not sure if we need to load the following module or not, still testing
       LoadModule authn_core_module modules/mod_authn_core.so
+      LoadModule authz_user_module modules/mod_authz_user.so
+
       OIDCClaimPrefix "OIDC-"
       OIDCResponseType "id_token"
       OIDCScope "openid email profile"
@@ -41,7 +42,7 @@ parameter_defaults:
       OIDCCryptoPassphrase "xxx"
 
       OIDCCacheType memcache
-      OIDCMemCacheServers "192.168.24.21:11211 192.168.24.20:11211 192.168.24.19:11211"
+      OIDCMemCacheServers "192.168.24.18:11211 192.168.24.13:11211 192.168.24.9:11211"
 
       # The following directives are necessary to support websso from Horizon
       # (Per https://docs.openstack.org/keystone/pike/advanced-topics/federation/websso.html)
