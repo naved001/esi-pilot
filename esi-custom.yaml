@@ -13,7 +13,7 @@ parameter_defaults:
   NeutronPhysicalBridge: br-ex
   NeutronFlatNetworks: datacentre
   NeutronMechanismDrivers: [openvswitch, baremetal]
-  NeutronNetworkVLANRanges: datacentre:381:499,datacentre:520:622,datacentre:624:630
+  NeutronNetworkVLANRanges: datacentre:464:519
   NeutronTypeDrivers: [local, geneve, vlan, flat, vxlan]
   CloudDomain: massopen.cloud
 
